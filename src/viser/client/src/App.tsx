@@ -341,7 +341,7 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
               {showLogo && messageSource === "websocket" && <ViserLogo />}
             </Box>
             {messageSource === "websocket" && (
-              <ControlPanel control_layout={controlLayout} />
+              // <ControlPanel control_layout={controlLayout} />
             )}
           </Box>
         </Box>
