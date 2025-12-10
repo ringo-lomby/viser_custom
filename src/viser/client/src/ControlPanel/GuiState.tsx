@@ -108,6 +108,7 @@ export function useGuiState(initialServer: string) {
           }),
         setLogo: (logo) =>
           set((state) => {
+            console.log("Storing logo in state:", logo);
             state.theme.logo_data = logo.logo_data;
             state.theme.logo_format = logo.logo_format;
             state.theme.clickable = logo.clickable;

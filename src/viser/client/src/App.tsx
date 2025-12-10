@@ -886,6 +886,8 @@ function ViserLogo() {
   const width = viewer.useGui((state: GuiState) => state.theme.width);
   const height = viewer.useGui((state: GuiState) => state.theme.height);
 
+  console.log("ViserLogo rendering with:", { logo_data, clickable, width, height });
+
   return (
     <>
       <Tooltip label={`Viser ${VISER_VERSION}`}>

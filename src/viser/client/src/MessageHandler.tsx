@@ -157,6 +157,7 @@ function useMessageHandler() {
 
       // Set a custom logo.
       case "SetLogoMessage": {
+        console.log("Received SetLogoMessage:", message);
         setLogo(message);
         return;
       }
