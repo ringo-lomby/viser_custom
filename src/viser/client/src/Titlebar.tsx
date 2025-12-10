@@ -1,5 +1,3 @@
-import { ViewerContext } from "./ViewerContext";
-import { ThemeConfigurationMessage } from "./WebsocketMessages";
 import {
   Burger,
   Button,
@@ -14,10 +12,13 @@ import {
   IconBrandGithub,
   IconFileDescription,
   IconKeyboard,
+  IconSettings,
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { useContext } from "react";
 import { GuiState } from "./ControlPanel/GuiState";
+import { ThemeConfigurationMessage } from "./WebsocketMessages";
+import { ViewerContext } from "./ViewerContext";
 
 // Type helpers.
 type ArrayElement<ArrayType extends readonly unknown[]> =
@@ -44,6 +45,9 @@ function getIcon(
       break;
     case "Keyboard":
       Icon = IconKeyboard;
+      break;
+    case "Settings":
+      Icon = IconSettings;
       break;
     default:
       assertUnreachable(icon);
@@ -123,7 +127,10 @@ export function TitlebarImage(
   );
 }
 
-export function Titlebar() {
+export function Titlebar(props: {
+  showControlPanel: boolean;
+  setShowControlPanel: (value: boolean) => void;
+}) {
   const viewer = useContext(ViewerContext)!;
   const content = viewer.useGui((state: GuiState) => state.theme.titlebar_content);
   const colorScheme = useMantineColorScheme().colorScheme;
@@ -170,6 +177,16 @@ export function Titlebar() {
             {buttons?.map((btn: ArrayElement<NonNullable<TitlebarContent["buttons"]>>, index: number) => (
               <TitlebarButton {...btn} key={index} />
             ))}
+            <Button
+              variant="default"
+              size="compact-sm"
+              leftSection={<IconSettings size="1em" />}
+              onClick={() => props.setShowControlPanel(!props.showControlPanel)}
+              ml="xs"
+              color="gray"
+            >
+              Control Panel
+            </Button>
           </Group>
           <Burger
             size="sm"
@@ -198,6 +215,18 @@ export function Titlebar() {
             {buttons?.map((btn: ArrayElement<NonNullable<TitlebarContent["buttons"]>>, index: number) => (
               <MobileTitlebarButton {...btn} key={index} />
             ))}
+            <Button
+              m="sm"
+              variant="default"
+              leftSection={<IconSettings size="1.5em" />}
+              onClick={() => {
+                props.setShowControlPanel(!props.showControlPanel);
+                burgerHandlers.close();
+              }}
+              color="gray"
+            >
+              Control Panel
+            </Button>
           </Paper>
         </Portal>
       </Paper>

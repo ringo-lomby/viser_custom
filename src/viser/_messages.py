@@ -1541,6 +1541,7 @@ class ThemeConfigurationMessage(Message):
     """Message from server->client to configure parts of the GUI."""
 
     titlebar_content: Optional[theme.TitlebarConfig]
+    control_panel_visible_by_default: Optional[bool]
     control_layout: Literal["floating", "collapsible", "fixed"]
     control_width: Literal["small", "medium", "large"]
     show_logo: bool

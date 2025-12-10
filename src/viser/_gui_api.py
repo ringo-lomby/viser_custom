@@ -470,6 +470,7 @@ class GuiApi:
         show_logo: bool = True,
         show_share_button: bool = True,
         brand_color: tuple[int, int, int] | None = None,
+        control_panel_visible_by_default: bool | None = None,
     ) -> None:
         """Configures the visual appearance of the viser front-end.
 
@@ -483,6 +484,7 @@ class GuiApi:
             show_logo: A boolean indicating if the logo should be displayed.
             show_share_button: A boolean indicating if the share button should be displayed.
             brand_color: An optional tuple of integers (RGB) representing the brand color.
+            control_panel_visible_by_default: An optional boolean to set the initial visibility of the control panel.
         """
 
         colors_cast: LengthTenStrTuple | None = None
@@ -532,6 +534,7 @@ class GuiApi:
                 show_logo=show_logo,
                 show_share_button=show_share_button,
                 colors=colors_cast,
+                control_panel_visible_by_default=control_panel_visible_by_default,
             ),
         )
 

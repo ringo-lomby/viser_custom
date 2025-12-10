@@ -1392,7 +1392,7 @@ export interface ThemeConfigurationMessage {
     buttons:
       | {
           text: string | null;
-          icon: "GitHub" | "Description" | "Keyboard" | null;
+          icon: "GitHub" | "Description" | "Keyboard" | "Settings" | null;
           href: string | null;
         }[]
       | null;
@@ -1422,6 +1422,7 @@ export interface ThemeConfigurationMessage {
         string,
       ]
     | null;
+  control_panel_visible_by_default: boolean | null;
 }
 /** Message from server->client requesting a render from a specified camera
  * pose.

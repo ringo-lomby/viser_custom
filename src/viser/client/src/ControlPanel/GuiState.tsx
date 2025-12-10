@@ -70,6 +70,7 @@ const cleanGuiState: GuiState = {
     show_logo: !hideViserLogo,
     show_share_button: true,
     colors: null,
+    control_panel_visible_by_default: false,
   },
   label: "",
   server: "ws://localhost:8080", // Currently this will always be overridden.

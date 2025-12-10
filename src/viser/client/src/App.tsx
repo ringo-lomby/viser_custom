@@ -266,6 +266,12 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
   const showLogo = viewer.useGui((state: GuiState) => state.theme.show_logo);
   const showStats = viewer.useDevSettings((state) => state.showStats);
   const { messageSource } = viewer;
+  const controlPanelVisibleByDefault = viewer.useGui(
+    (state: GuiState) => state.theme.control_panel_visible_by_default,
+  );
+  const [showControlPanel, setShowControlPanel] = React.useState(
+    controlPanelVisibleByDefault ?? true,
+  );
 
   // Create Mantine theme with custom colors if provided.
   const mantineTheme = useMemo(
@@ -319,7 +325,10 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
             flexDirection: "column",
           }}
         >
-          <Titlebar />
+          <Titlebar
+            showControlPanel={showControlPanel}
+            setShowControlPanel={setShowControlPanel}
+          />
           <Box
             style={{
               width: "100%",
@@ -340,8 +349,8 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
               {canvases}
               {showLogo && messageSource === "websocket" && <ViserLogo />}
             </Box>
-            {messageSource === "websocket" && (
-              // <ControlPanel control_layout={controlLayout} />
+            {showControlPanel && (
+              <ControlPanel control_layout={controlLayout} />
             )}
           </Box>
         </Box>
