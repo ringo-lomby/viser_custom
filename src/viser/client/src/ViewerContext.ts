@@ -8,7 +8,6 @@ import * as THREE from "three";
 import React from "react";
 import { UseSceneTree } from "./SceneTree";
 
-import { GuiActions, GuiState } from "./ControlPanel/GuiState";
 import { GetRenderRequestMessage, Message } from "./WebsocketMessages";
 
 // Type definitions for all mutable state.

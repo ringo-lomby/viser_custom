@@ -1767,3 +1767,6 @@ class SetLogoMessage(Message):
 
     logo_data: Optional[str]
     logo_format: Optional[Literal["image/png", "image/jpeg", "image/svg+xml"]]
+    clickable: Optional[bool]
+    width: Optional[str]
+    height: Optional[str]

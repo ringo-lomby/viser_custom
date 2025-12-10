@@ -409,6 +409,9 @@ class GuiApi:
         self,
         image: Union[np.ndarray, str, None],
         format: Literal["png", "jpeg", "svg"] = "png",
+        clickable: Optional[bool] = None,
+        width: Optional[str] = None,
+        height: Optional[str] = None,
     ) -> None:
         """Set a custom logo, which will override the default viser logo.
 
@@ -418,6 +421,9 @@ class GuiApi:
             image: The image to use as the logo. Can be a path to a file, a
                 numpy array, or None to clear the logo.
             format: The format of the image.
+            clickable: Whether the logo should be clickable. If None, the default behavior will be used.
+            width: The width of the logo (e.g., "2.5em", "50px", "100%"). If None, the default width will be used.
+            height: The height of the logo (e.g., "auto", "50px"). If None, the default height will be used.
         """
         if image is None:
             logo_data = None
@@ -448,6 +454,9 @@ class GuiApi:
             _messages.SetLogoMessage(
                 logo_data=logo_data,
                 logo_format=logo_format,
+                clickable=clickable,
+                width=width,
+                height=height,
             )
         )
 

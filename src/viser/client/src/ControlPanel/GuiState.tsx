@@ -14,6 +14,9 @@ export interface GuiState {
   theme: ThemeConfigurationMessage & {
     logo_data?: string | null;
     logo_format?: "image/png" | "image/jpeg" | "image/svg+xml" | null;
+    clickable?: boolean | null;
+    width?: string | null;
+    height?: string | null;
   };
   label: string;
   server: string;
@@ -107,6 +110,9 @@ export function useGuiState(initialServer: string) {
           set((state) => {
             state.theme.logo_data = logo.logo_data;
             state.theme.logo_format = logo.logo_format;
+            state.theme.clickable = logo.clickable;
+            state.theme.width = logo.width;
+            state.theme.height = logo.height;
           }),
         setShareUrl: (share_url) =>
           set((state) => {

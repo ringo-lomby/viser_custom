@@ -1538,6 +1538,9 @@ export interface SetLogoMessage {
   type: "SetLogoMessage";
   logo_data: string | null;
   logo_format: "image/png" | "image/jpeg" | "image/svg+xml" | null;
+  clickable: boolean | null;
+  width: string | null;
+  height: string | null;
 }
 
 export type Message =

@@ -882,6 +882,9 @@ function ViserLogo() {
     useDisclosure(false);
   const viewer = React.useContext(ViewerContext)!;
   const logo_data = viewer.useGui((state: GuiState) => state.theme.logo_data);
+  const clickable = viewer.useGui((state: GuiState) => state.theme.clickable);
+  const width = viewer.useGui((state: GuiState) => state.theme.width);
+  const height = viewer.useGui((state: GuiState) => state.theme.height);
 
   return (
     <>
@@ -891,15 +894,15 @@ function ViserLogo() {
             position: "absolute",
             bottom: "1em",
             left: "1em",
-            cursor: "pointer",
+            cursor: clickable === false ? "auto" : "pointer",
           }}
           component="a"
-          onClick={openAbout}
+          onClick={clickable === false ? undefined : openAbout}
           title="About Viser"
         >
           <Image
             src={logo_data ?? "./logo.svg"}
-            style={{ width: "2.5em", height: "auto" }}
+            style={{ width: width ?? "2.5em", height: height ?? "auto" }}
           />
         </Box>
       </Tooltip>
