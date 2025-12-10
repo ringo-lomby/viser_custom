@@ -1,6 +1,7 @@
 import React from "react";
 import { Switch, Select, Stack, Paper, Tooltip } from "@mantine/core";
 import { ViewerContext } from "./ViewerContext";
+import { GuiState } from "./ControlPanel/GuiState";
 
 interface DevSettingsPanelProps {
   devSettingsStore: ReturnType<
@@ -12,14 +13,14 @@ export function DevSettingsPanel({ devSettingsStore }: DevSettingsPanelProps) {
   const viewer = React.useContext(ViewerContext)!;
 
   const showStats = devSettingsStore((state) => state.showStats);
-  const showLogo = viewer.useGui((state) => state.theme.show_logo);
+  const showLogo = viewer.useGui((state: GuiState) => state.theme.show_logo);
   const fixedDpr = devSettingsStore((state) => state.fixedDpr);
   const logCamera = devSettingsStore((state) => state.logCamera);
   const enableOrbitCrosshair = devSettingsStore(
     (state) => state.enableOrbitCrosshair,
   );
 
-  const darkMode = viewer.useGui((state) => state.theme.dark_mode);
+  const darkMode = viewer.useGui((state: GuiState) => state.theme.dark_mode);
   const setDarkMode = (dark: boolean) => {
     viewer.useGui.setState({
       theme: { ...viewer.useGui.getState().theme, dark_mode: dark },

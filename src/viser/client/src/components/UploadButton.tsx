@@ -9,6 +9,7 @@ import { IconCheck } from "@tabler/icons-react";
 import { notifications } from "@mantine/notifications";
 import { htmlIconWrapper } from "./ComponentStyles.css";
 import { toMantineColor } from "./colorUtils";
+import { GuiActions, GuiState } from "../ControlPanel/GuiState";
 
 export default function UploadButtonComponent({
   uuid,
@@ -71,9 +72,11 @@ function useFileUpload({
   componentUuid: string;
   viewer: ViewerContextContents;
 }) {
-  const updateUploadState = viewer.useGui((state) => state.updateUploadState);
+  const updateUploadState = viewer.useGui(
+    (state: GuiState & GuiActions) => state.updateUploadState,
+  );
   const uploadState = viewer.useGui(
-    (state) => state.uploadsInProgress[componentUuid],
+    (state: GuiState) => state.uploadsInProgress[componentUuid],
   );
   const totalBytes = uploadState?.totalBytes;
 

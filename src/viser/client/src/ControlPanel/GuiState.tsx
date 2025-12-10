@@ -10,10 +10,10 @@ import {
   ThemeConfigurationMessage,
 } from "../WebsocketMessages";
 
-interface GuiState {
+export interface GuiState {
   theme: ThemeConfigurationMessage & {
-    logo_data?: string;
-    logo_format?: "image/png" | "image/jpeg" | "image/svg+xml";
+    logo_data?: string | null;
+    logo_format?: "image/png" | "image/jpeg" | "image/svg+xml" | null;
   };
   label: string;
   server: string;
@@ -37,7 +37,7 @@ interface GuiState {
   };
 }
 
-interface GuiActions {
+export interface GuiActions {
   setTheme: (theme: ThemeConfigurationMessage) => void;
   setLogo: (logo: SetLogoMessage) => void;
   setShareUrl: (share_url: string | null) => void;

@@ -5,13 +5,14 @@ import { notifications } from "@mantine/notifications";
 import { ViewerContext } from "./ViewerContext";
 import { syncSearchParamServer } from "./SearchParamsUtils";
 import { WsWorkerIncoming, WsWorkerOutgoing } from "./WebsocketServerWorker";
+import { GuiActions, GuiState } from "./ControlPanel/GuiState";
 
 /** Component for handling websocket connections. */
 export function WebsocketMessageProducer() {
   const viewer = useContext(ViewerContext)!;
   const viewerMutable = viewer.mutable.current;
-  const server = viewer.useGui((state) => state.server);
-  const resetGui = viewer.useGui((state) => state.resetGui);
+  const server = viewer.useGui((state: GuiState) => state.server);
+  const resetGui = viewer.useGui((state: GuiActions) => state.resetGui);
   const resetScene = viewer.sceneTreeActions.resetScene;
 
   syncSearchParamServer(server);

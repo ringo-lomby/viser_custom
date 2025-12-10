@@ -16,13 +16,14 @@ import { IconHomeMove, IconPhoto } from "@tabler/icons-react";
 import React from "react";
 import SceneTreeTable from "./SceneTreeTable";
 import { DevSettingsPanel } from "../DevSettingsPanel";
+import { GuiState } from "./GuiState";
 
 const MemoizedTable = React.memo(SceneTreeTable);
 
 export default function ServerControls() {
   const viewer = React.useContext(ViewerContext)!;
   const viewerMutable = viewer.mutable.current; // Get mutable once
-  const controlWidth = viewer.useGui((state) => state.theme.control_width);
+  const controlWidth = viewer.useGui((state: GuiState) => state.theme.control_width);
   const [showDevSettings, setShowDevSettings] = React.useState(false);
 
   return (
@@ -41,7 +42,7 @@ export default function ServerControls() {
               />
             }
             leftSectionWidth="1.8rem"
-            defaultValue={viewer.useGui((state) => state.server)}
+            defaultValue={viewer.useGui((state: GuiState) => state.server)}
             onBlur={(event) =>
               viewer.useGui.setState({ server: event.currentTarget.value })
             }

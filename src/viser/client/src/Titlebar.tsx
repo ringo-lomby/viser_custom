@@ -17,6 +17,7 @@ import {
 } from "@tabler/icons-react";
 import { useDisclosure } from "@mantine/hooks";
 import { useContext } from "react";
+import { GuiState } from "./ControlPanel/GuiState";
 
 // Type helpers.
 type ArrayElement<ArrayType extends readonly unknown[]> =
@@ -124,7 +125,7 @@ export function TitlebarImage(
 
 export function Titlebar() {
   const viewer = useContext(ViewerContext)!;
-  const content = viewer.useGui((state) => state.theme.titlebar_content);
+  const content = viewer.useGui((state: GuiState) => state.theme.titlebar_content);
   const colorScheme = useMantineColorScheme().colorScheme;
 
   const [burgerOpen, burgerHandlers] = useDisclosure(false);
@@ -166,7 +167,7 @@ export function Titlebar() {
               scrollbarWidth: "none",
             })}
           >
-            {buttons?.map((btn, index) => (
+            {buttons?.map((btn: ArrayElement<NonNullable<TitlebarContent["buttons"]>>, index: number) => (
               <TitlebarButton {...btn} key={index} />
             ))}
           </Group>
@@ -194,7 +195,7 @@ export function Titlebar() {
               padding: burgerOpen ? "1rem" : "0",
             }}
           >
-            {buttons?.map((btn, index) => (
+            {buttons?.map((btn: ArrayElement<NonNullable<TitlebarContent["buttons"]>>, index: number) => (
               <MobileTitlebarButton {...btn} key={index} />
             ))}
           </Paper>

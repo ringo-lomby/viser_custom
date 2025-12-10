@@ -8,7 +8,7 @@ import * as THREE from "three";
 import React from "react";
 import { UseSceneTree } from "./SceneTree";
 
-import { UseGui } from "./ControlPanel/GuiState";
+import { GuiActions, GuiState } from "./ControlPanel/GuiState";
 import { GetRenderRequestMessage, Message } from "./WebsocketMessages";
 
 // Type definitions for all mutable state.
@@ -41,7 +41,7 @@ export type ViewerMutable = {
     enabled: false | "click" | "rect-select"; // Enable box events.
     dragStart: [number, number]; // First mouse position.
     dragEnd: [number, number]; // Final mouse position.
-    isDragging: boolean;
+  isDragging: boolean;
   };
 
   // Skinned mesh state.
@@ -60,6 +60,8 @@ export type ViewerMutable = {
   hoveredElementsCount: number;
 };
 
+type UseGuiHook = ReturnType<typeof import("./ControlPanel/GuiState").useGuiState>;
+
 export type ViewerContextContents = {
   // Non-mutable state.
   messageSource: "websocket" | "file_playback";
@@ -70,7 +72,7 @@ export type ViewerContextContents = {
   useEnvironment: ReturnType<
     typeof import("./EnvironmentState").useEnvironmentState
   >;
-  useGui: UseGui;
+  useGui: UseGuiHook;
   useDevSettings: ReturnType<
     typeof import("./DevSettingsStore").useDevSettingsStore
   >;

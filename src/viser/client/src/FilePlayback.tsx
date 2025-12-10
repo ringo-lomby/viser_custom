@@ -18,6 +18,7 @@ import {
   IconPlayerPauseFilled,
   IconPlayerPlayFilled,
 } from "@tabler/icons-react";
+import { GuiState } from "./ControlPanel/GuiState";
 
 /** Download, decompress, and deserialize a file, which should be serialized
  * via msgpack and compressed via gzip. Also takes a hook for status updates. */
@@ -78,7 +79,7 @@ export function PlaybackFromFile({ fileUrl }: { fileUrl: string }) {
   const viewer = useContext(ViewerContext)!;
   const viewerMutable = viewer.mutable.current; // Get mutable once
 
-  const darkMode = viewer.useGui((state) => state.theme.dark_mode);
+  const darkMode = viewer.useGui((state: GuiState) => state.theme.dark_mode);
   const [status, setStatus] = useState({ downloaded: 0.0, total: 0.0 });
   const [playbackSpeed, setPlaybackSpeed] = useState("1x");
   const [paused, setPaused] = useState(false);

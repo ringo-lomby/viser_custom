@@ -38,6 +38,7 @@ import BottomPanel from "./BottomPanel";
 import FloatingPanel from "./FloatingPanel";
 import { ThemeConfigurationMessage } from "../WebsocketMessages";
 import SidebarPanel from "./SidebarPanel";
+import { GuiActions, GuiState } from "./GuiState";
 
 // Must match constant in Python.
 const ROOT_CONTAINER_ID = "root";
@@ -53,13 +54,13 @@ export default function ControlPanel(props: {
   // TODO: will result in unnecessary re-renders.
   const viewer = React.useContext(ViewerContext)!;
   const showGenerated = viewer.useGui(
-    (state) =>
+    (state: GuiState) =>
       Object.keys(state.guiUuidSetFromContainerUuid["root"] ?? {}).length > 0,
   );
   const [showSettings, { toggle }] = useDisclosure(false);
 
   const controlWidthString = viewer.useGui(
-    (state) => state.theme.control_width,
+    (state: GuiState) => state.theme.control_width,
   );
   const controlWidth = (
     controlWidthString == "small"
@@ -161,8 +162,8 @@ export default function ControlPanel(props: {
 /* Icon and label telling us the current status of the websocket connection. */
 function ConnectionStatus() {
   const { useGui } = React.useContext(ViewerContext)!;
-  const connected = useGui((state) => state.websocketConnected);
-  const label = useGui((state) => state.label);
+  const connected = useGui((state: GuiState) => state.websocketConnected);
+  const label = useGui((state: GuiState) => state.label);
 
   return (
     <>
@@ -200,9 +201,9 @@ function ConnectionStatus() {
 function ShareButton() {
   const viewer = React.useContext(ViewerContext)!;
   const viewerMutable = viewer.mutable.current; // Get mutable once
-  const connected = viewer.useGui((state) => state.websocketConnected);
-  const shareUrl = viewer.useGui((state) => state.shareUrl);
-  const setShareUrl = viewer.useGui((state) => state.setShareUrl);
+  const connected = viewer.useGui((state: GuiState) => state.websocketConnected);
+  const shareUrl = viewer.useGui((state: GuiState) => state.shareUrl);
+  const setShareUrl = viewer.useGui((state: GuiActions) => state.setShareUrl);
 
   const [doingSomething, setDoingSomething] = React.useState(false);
 
@@ -223,7 +224,7 @@ function ShareButton() {
 
   const colorScheme = useMantineColorScheme().colorScheme;
 
-  if (viewer.useGui((state) => state.theme).show_share_button === false)
+  if (viewer.useGui((state: GuiState) => state.theme).show_share_button === false)
     return null;
 
   return (

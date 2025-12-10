@@ -4,12 +4,13 @@ import GeneratedGuiContainer from "./ControlPanel/Generated";
 import { Modal } from "@mantine/core";
 import { useContext } from "react";
 import { shallowArrayEqual } from "./utils/shallowArrayEqual";
+import { GuiState } from "./ControlPanel/GuiState";
 
 export function ViserModal() {
   const viewer = useContext(ViewerContext)!;
 
-  const modalList = viewer.useGui((state) => state.modals, shallowArrayEqual);
-  const modals = modalList.map((conf, index) => {
+  const modalList = viewer.useGui((state: GuiState) => state.modals, shallowArrayEqual);
+  const modals = modalList.map((conf: GuiModalMessage, index: number) => {
     return <GeneratedModal key={conf.uuid} conf={conf} index={index} />;
   });
 

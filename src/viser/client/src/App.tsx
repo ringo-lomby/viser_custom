@@ -31,7 +31,7 @@ import { SceneNodeThreeObject } from "./SceneTree";
 import { shallowArrayEqual } from "./utils/shallowArrayEqual";
 import { ViewerContext, ViewerContextContents } from "./ViewerContext";
 import ControlPanel from "./ControlPanel/ControlPanel";
-import { useGuiState } from "./ControlPanel/GuiState";
+import { GuiState, useGuiState } from "./ControlPanel/GuiState";
 import { searchParamKey } from "./SearchParamsUtils";
 import { WebsocketMessageProducer } from "./WebsocketInterface";
 import { Titlebar } from "./Titlebar";
@@ -258,10 +258,12 @@ function ViewerRoot() {
  */
 function ViewerContents({ children }: { children: React.ReactNode }) {
   const viewer = React.useContext(ViewerContext)!;
-  const darkMode = viewer.useGui((state) => state.theme.dark_mode);
-  const colors = viewer.useGui((state) => state.theme.colors);
-  const controlLayout = viewer.useGui((state) => state.theme.control_layout);
-  const showLogo = viewer.useGui((state) => state.theme.show_logo);
+  const darkMode = viewer.useGui((state: GuiState) => state.theme.dark_mode);
+  const colors = viewer.useGui((state: GuiState) => state.theme.colors);
+  const controlLayout = viewer.useGui(
+    (state: GuiState) => state.theme.control_layout,
+  );
+  const showLogo = viewer.useGui((state: GuiState) => state.theme.show_logo);
   const showStats = viewer.useDevSettings((state) => state.showStats);
   const { messageSource } = viewer;
 
@@ -879,7 +881,7 @@ function ViserLogo() {
   const [aboutModalOpened, { open: openAbout, close: closeAbout }] =
     useDisclosure(false);
   const viewer = React.useContext(ViewerContext)!;
-  const logo_data = viewer.useGui((state) => state.theme.logo_data);
+  const logo_data = viewer.useGui((state: GuiState) => state.theme.logo_data);
 
   return (
     <>

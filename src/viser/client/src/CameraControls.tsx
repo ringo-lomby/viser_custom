@@ -9,6 +9,7 @@ import * as THREE from "three";
 import { computeT_threeworld_world } from "./WorldTransformUtils";
 import { useThrottledMessageSender } from "./WebsocketUtils";
 import { Grid, PivotControls } from "@react-three/drei";
+import { GuiState } from "./ControlPanel/GuiState";
 
 function CrosshairVisual({
   visible,
@@ -88,7 +89,7 @@ function OrbitOriginTool({
 }) {
   const viewer = useContext(ViewerContext)!;
   const showOrbitOriginTool = viewer.useGui(
-    (state) => state.showOrbitOriginTool,
+    (state: GuiState) => state.showOrbitOriginTool,
   );
   const enableOrbitCrosshair = viewer.useDevSettings(
     (state) => state.enableOrbitCrosshair,
@@ -407,7 +408,7 @@ export function SynchronizedCameraControls() {
 
   // Send camera for new connections.
   // We add a small delay to give the server time to add a callback.
-  const connected = viewer.useGui((state) => state.websocketConnected);
+  const connected = viewer.useGui((state: GuiState) => state.websocketConnected);
   const initialCameraPositionSet = React.useRef(false);
   React.useEffect(() => {
     if (!initialCameraPositionSet.current) {

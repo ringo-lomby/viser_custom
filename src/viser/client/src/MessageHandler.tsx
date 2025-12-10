@@ -21,6 +21,7 @@ import { IconCheck, IconDownload } from "@tabler/icons-react";
 import { computeT_threeworld_world } from "./WorldTransformUtils";
 import { rootNodeTemplate } from "./SceneTreeState";
 import { GaussianSplatsContext } from "./Splatting/GaussianSplatsHelpers";
+import { GuiActions, GuiState } from "./ControlPanel/GuiState";
 
 /** Returns a handler for all incoming messages. */
 function useMessageHandler() {
@@ -32,15 +33,15 @@ function useMessageHandler() {
   const updateSceneNode = viewer.sceneTreeActions.updateSceneNodeProps;
   const removeSceneNode = viewer.sceneTreeActions.removeSceneNode;
   const addSceneNode = viewer.sceneTreeActions.addSceneNode;
-  const setTheme = viewer.useGui((state) => state.setTheme);
-  const setLogo = viewer.useGui((state) => state.setLogo);
-  const setShareUrl = viewer.useGui((state) => state.setShareUrl);
-  const addGui = viewer.useGui((state) => state.addGui);
-  const addModal = viewer.useGui((state) => state.addModal);
-  const removeModal = viewer.useGui((state) => state.removeModal);
-  const removeGui = viewer.useGui((state) => state.removeGui);
-  const updateGuiProps = viewer.useGui((state) => state.updateGuiProps);
-  const updateUploadState = viewer.useGui((state) => state.updateUploadState);
+  const setTheme = viewer.useGui((state: GuiState & GuiActions) => state.setTheme);
+  const setLogo = viewer.useGui((state: GuiState & GuiActions) => state.setLogo);
+  const setShareUrl = viewer.useGui((state: GuiState & GuiActions) => state.setShareUrl);
+  const addGui = viewer.useGui((state: GuiState & GuiActions) => state.addGui);
+  const addModal = viewer.useGui((state: GuiState & GuiActions) => state.addModal);
+  const removeModal = viewer.useGui((state: GuiState & GuiActions) => state.removeModal);
+  const removeGui = viewer.useGui((state: GuiState & GuiActions) => state.removeGui);
+  const updateGuiProps = viewer.useGui((state: GuiState & GuiActions) => state.updateGuiProps);
+  const updateUploadState = viewer.useGui((state: GuiState & GuiActions) => state.updateUploadState);
 
   // Same as addSceneNode, but make a parent in the form of a dummy coordinate
   // frame if it doesn't exist yet.
