@@ -1135,6 +1135,8 @@ class GuiHtmlProps:
     """HTML content to be displayed."""
     visible: bool
     """Visibility state of the markdown element."""
+    target_area: Literal["control_panel", "main_scene"] = "control_panel"
+    """Where to display the HTML content. Either \"control_panel\" or \"main_scene\"."""
 
 
 @dataclasses.dataclass

@@ -348,6 +348,13 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
             >
               {canvases}
               {showLogo && messageSource === "websocket" && <ViserLogo />}
+              {Object.entries(
+                viewer.useGui((state) => state.mainSceneHtmlContent),
+              )
+                .filter(([, content]) => content !== undefined)
+                .map(([key, content]) => (
+                  <div key={key} dangerouslySetInnerHTML={{ __html: content as string }} />
+                ))}
             </Box>
             {showControlPanel && (
               <ControlPanel control_layout={controlLayout} />

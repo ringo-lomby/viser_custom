@@ -38,6 +38,7 @@ export interface GuiState {
       filename: string;
     };
   };
+  mainSceneHtmlContent: { [uuid: string]: string | undefined };
 }
 
 export interface GuiActions {
@@ -56,6 +57,8 @@ export interface GuiActions {
       | GuiState["uploadsInProgress"][string]
     ) & { componentId: string },
   ) => void;
+  addMainSceneHtml: (uuid: string, content: string) => void;
+  removeMainSceneHtml: (uuid: string) => void;
 }
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -83,6 +86,7 @@ const cleanGuiState: GuiState = {
   guiOrderFromUuid: {},
   guiConfigFromUuid: {},
   uploadsInProgress: {},
+  mainSceneHtmlContent: {},
 };
 
 export function computeRelativeLuminance(color: string) {
@@ -144,25 +148,25 @@ export function useGuiState(initialServer: string) {
         removeGui: (id) =>
           set((state) => {
             const guiConfig = state.guiConfigFromUuid[id];
-            if (guiConfig == undefined) {
-              // TODO: this will currently happen when GUI elements are removed
-              // and then a new client connects. Needs to be revisited.
-              console.warn("(OK) Tried to remove non-existent component", id);
-              return;
+            if (guiConfig !== undefined) {
+              delete state.guiUuidSetFromContainerUuid[guiConfig.container_uuid]![id];
+              delete state.guiOrderFromUuid[id];
+              delete state.guiConfigFromUuid[id];
+              if (
+                Object.keys(
+                  state.guiUuidSetFromContainerUuid[guiConfig.container_uuid]!,
+                ).length == 0
+              )
+                delete state.guiUuidSetFromContainerUuid[
+                  guiConfig.container_uuid
+                ];
             }
-            delete state.guiUuidSetFromContainerUuid[guiConfig.container_uuid]![
-              id
-            ];
-            delete state.guiOrderFromUuid[id];
-            delete state.guiConfigFromUuid[id];
-            if (
-              Object.keys(
-                state.guiUuidSetFromContainerUuid[guiConfig.container_uuid]!,
-              ).length == 0
-            )
-              delete state.guiUuidSetFromContainerUuid[
-                guiConfig.container_uuid
-              ];
+            // Always attempt to remove from mainSceneHtmlContent, in case it was placed there.
+            delete state.mainSceneHtmlContent[id];
+
+            if (guiConfig === undefined && state.mainSceneHtmlContent[id] === undefined) {
+                console.warn("(OK) Tried to remove non-existent component", id);
+            }
           }),
         resetGui: () =>
           set((state) => {
@@ -187,6 +191,14 @@ export function useGuiState(initialServer: string) {
               ...globalState.uploadsInProgress[componentId],
               ...rest,
             };
+          }),
+        addMainSceneHtml: (uuid, content) =>
+          set((state) => {
+            state.mainSceneHtmlContent[uuid] = content;
+          }),
+        removeMainSceneHtml: (uuid) =>
+          set((state) => {
+            delete state.mainSceneHtmlContent[uuid];
           }),
         updateGuiProps: (id, updates) => {
           set((state) => {

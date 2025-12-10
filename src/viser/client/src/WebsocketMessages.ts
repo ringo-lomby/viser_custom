@@ -486,7 +486,12 @@ export interface GuiHtmlMessage {
   type: "GuiHtmlMessage";
   uuid: string;
   container_uuid: string;
-  props: { order: number; content: string; visible: boolean };
+  props: {
+    order: number;
+    content: string;
+    visible: boolean;
+    target_area: "control_panel" | "main_scene";
+  };
 }
 /** GuiProgressBarMessage(uuid: 'str', value: 'float', container_uuid: 'str', props: 'GuiProgressBarProps')
  *

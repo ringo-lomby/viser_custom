@@ -42,6 +42,7 @@ function useMessageHandler() {
   const removeGui = viewer.useGui((state: GuiState & GuiActions) => state.removeGui);
   const updateGuiProps = viewer.useGui((state: GuiState & GuiActions) => state.updateGuiProps);
   const updateUploadState = viewer.useGui((state: GuiState & GuiActions) => state.updateUploadState);
+  const addMainSceneHtml = viewer.useGui((state: GuiState & GuiActions) => state.addMainSceneHtml);
 
   // Same as addSceneNode, but make a parent in the form of a dummy coordinate
   // frame if it doesn't exist yet.
@@ -79,7 +80,16 @@ function useMessageHandler() {
   // Return message handler.
   return (message: Message) => {
     if (isGuiComponentMessage(message)) {
-      addGui(message);
+      if (message.type === "GuiHtmlMessage") {
+        if (message.props.target_area === "main_scene") {
+          addMainSceneHtml(message.uuid, message.props.content);
+        } else {
+          // Default to control panel for GuiHtmlMessage if not explicitly main_scene
+          addGui(message);
+        }
+      } else {
+        addGui(message);
+      }
       return;
     }
 

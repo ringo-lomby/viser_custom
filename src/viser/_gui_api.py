@@ -711,6 +711,7 @@ class GuiApi:
         *,
         order: float | None = None,
         visible: bool = True,
+        target_area: Literal["control_panel", "main_scene"] = "control_panel",
     ) -> GuiHtmlHandle:
         """Add HTML to the GUI.
 
@@ -729,6 +730,7 @@ class GuiApi:
                 order=_apply_default_order(order),
                 content=content,
                 visible=visible,
+                target_area=target_area,
             ),
         )
         self._websock_interface.queue_message(message)
