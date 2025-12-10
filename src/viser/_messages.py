@@ -1759,3 +1759,11 @@ class SetGuiPanelLabelMessage(Message):
     """Message from server->client to set the label of the GUI panel."""
 
     label: Optional[str]
+
+
+@dataclasses.dataclass
+class SetLogoMessage(Message):
+    """Message from server->client to set the logo in the GUI panel."""
+
+    logo_data: Optional[str]
+    logo_format: Optional[Literal["image/png", "image/jpeg", "image/svg+xml"]]

@@ -6,11 +6,15 @@ import { immer } from "zustand/middleware/immer";
 import {
   GuiComponentMessage,
   GuiModalMessage,
+  SetLogoMessage,
   ThemeConfigurationMessage,
 } from "../WebsocketMessages";
 
 interface GuiState {
-  theme: ThemeConfigurationMessage;
+  theme: ThemeConfigurationMessage & {
+    logo_data?: string;
+    logo_format?: "image/png" | "image/jpeg" | "image/svg+xml";
+  };
   label: string;
   server: string;
   shareUrl: string | null;
@@ -24,7 +28,7 @@ interface GuiState {
   guiOrderFromUuid: { [id: string]: number };
   guiConfigFromUuid: { [id: string]: GuiComponentMessage | undefined };
   uploadsInProgress: {
-    [uuid: string]: {
+    [uuid:string]: {
       notificationId: string;
       uploadedBytes: number;
       totalBytes: number;
@@ -35,6 +39,7 @@ interface GuiState {
 
 interface GuiActions {
   setTheme: (theme: ThemeConfigurationMessage) => void;
+  setLogo: (logo: SetLogoMessage) => void;
   setShareUrl: (share_url: string | null) => void;
   addGui: (config: GuiComponentMessage) => void;
   addModal: (config: GuiModalMessage) => void;
@@ -97,6 +102,11 @@ export function useGuiState(initialServer: string) {
         setTheme: (theme) =>
           set((state) => {
             state.theme = theme;
+          }),
+        setLogo: (logo) =>
+          set((state) => {
+            state.theme.logo_data = logo.logo_data;
+            state.theme.logo_format = logo.logo_format;
           }),
         setShareUrl: (share_url) =>
           set((state) => {
@@ -202,6 +212,3 @@ export function useGuiState(initialServer: string) {
     ),
   )[0];
 }
-
-/** Type corresponding to a zustand-style useGuiState hook. */
-export type UseGui = ReturnType<typeof useGuiState>;

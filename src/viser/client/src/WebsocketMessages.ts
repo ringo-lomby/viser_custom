@@ -1530,6 +1530,15 @@ export interface SetGuiPanelLabelMessage {
   type: "SetGuiPanelLabelMessage";
   label: string | null;
 }
+/** Message from server->client to set the logo in the GUI panel.
+ *
+ * (automatically generated)
+ */
+export interface SetLogoMessage {
+  type: "SetLogoMessage";
+  logo_data: string | null;
+  logo_format: "image/png" | "image/jpeg" | "image/svg+xml" | null;
+}
 
 export type Message =
   | CameraFrustumMessage
@@ -1621,7 +1630,8 @@ export type Message =
   | ShareUrlRequest
   | ShareUrlUpdated
   | ShareUrlDisconnect
-  | SetGuiPanelLabelMessage;
+  | SetGuiPanelLabelMessage
+  | SetLogoMessage;
 export type SceneNodeMessage =
   | CameraFrustumMessage
   | GlbMessage

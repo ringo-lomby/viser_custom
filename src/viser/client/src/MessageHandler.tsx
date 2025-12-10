@@ -33,6 +33,7 @@ function useMessageHandler() {
   const removeSceneNode = viewer.sceneTreeActions.removeSceneNode;
   const addSceneNode = viewer.sceneTreeActions.addSceneNode;
   const setTheme = viewer.useGui((state) => state.setTheme);
+  const setLogo = viewer.useGui((state) => state.setLogo);
   const setShareUrl = viewer.useGui((state) => state.setShareUrl);
   const addGui = viewer.useGui((state) => state.addGui);
   const addModal = viewer.useGui((state) => state.addModal);
@@ -152,6 +153,13 @@ function useMessageHandler() {
         setTheme(message);
         return;
       }
+
+      // Set a custom logo.
+      case "SetLogoMessage": {
+        setLogo(message);
+        return;
+      }
+
 
       // Run some arbitrary Javascript.
       // This is used for plotting, where the Python server will send over a

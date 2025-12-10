@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 import asyncio
+import base64
 import builtins
 import colorsys
 import dataclasses
@@ -30,7 +31,7 @@ from typing_extensions import (
     get_type_hints,
 )
 
-from viser import theme
+from viser import _image_encoding, theme
 from viser._backwards_compat_shims import deprecated_positional_shim
 
 from . import _messages, uplot
@@ -403,6 +404,52 @@ class GuiApi:
             label: The new label.
         """
         self._websock_interface.queue_message(_messages.SetGuiPanelLabelMessage(label))
+
+    def set_logo(
+        self,
+        image: Union[np.ndarray, str, None],
+        format: Literal["png", "jpeg", "svg"] = "png",
+    ) -> None:
+        """Set a custom logo, which will override the default viser logo.
+
+        For `format="svg"`, the `image` argument should be a path to the file.
+
+        Args:
+            image: The image to use as the logo. Can be a path to a file, a
+                numpy array, or None to clear the logo.
+            format: The format of the image.
+        """
+        if image is None:
+            logo_data = None
+            logo_format = None
+        elif format == "svg":
+            assert isinstance(image, str)
+            with open(image, "r") as f:
+                data = f.read()
+            logo_data = (
+                "data:image/svg+xml;base64,"
+                + base64.b64encode(data.encode("utf-8")).decode("utf-8")
+            )
+            logo_format = "image/svg+xml"
+        else:
+            assert isinstance(image, np.ndarray)
+            media_type, data = _image_encoding.encode_image(
+                image, format=format, jpeg_quality=None
+            )
+            logo_data = (
+                "data:"
+                + media_type
+                + ";base64,"
+                + base64.b64encode(data).decode("utf-8")
+            )
+            logo_format = cast(Literal["image/png", "image/jpeg"], media_type)
+
+        self._websock_interface.queue_message(
+            _messages.SetLogoMessage(
+                logo_data=logo_data,
+                logo_format=logo_format,
+            )
+        )
 
     def configure_theme(
         self,

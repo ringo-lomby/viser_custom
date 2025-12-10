@@ -878,6 +878,8 @@ function SceneContextSetter() {
 function ViserLogo() {
   const [aboutModalOpened, { open: openAbout, close: closeAbout }] =
     useDisclosure(false);
+  const viewer = React.useContext(ViewerContext)!;
+  const logo_data = viewer.useGui((state) => state.theme.logo_data);
 
   return (
     <>
@@ -893,7 +895,10 @@ function ViserLogo() {
           onClick={openAbout}
           title="About Viser"
         >
-          <Image src="./logo.svg" style={{ width: "2.5em", height: "auto" }} />
+          <Image
+            src={logo_data ?? "./logo.svg"}
+            style={{ width: "2.5em", height: "auto" }}
+          />
         </Box>
       </Tooltip>
       <Modal
