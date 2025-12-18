@@ -104,7 +104,7 @@ export function createStandardMaterial(props: {
   const standardArgs = {
     color: props.color === undefined ? 0xffffff : rgbToInt(props.color),
     wireframe: props.wireframe,
-    transparent: props.opacity !== null,
+    transparent: props.opacity !== null && props.opacity < 1.0,
     opacity: props.opacity ?? 1.0,
     side: {
       front: THREE.FrontSide,
