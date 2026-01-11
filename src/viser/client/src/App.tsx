@@ -356,13 +356,18 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                 .map(([key, content]) => (
                   <div key={key} dangerouslySetInnerHTML={{ __html: content as string }} />
                 ))}
-              {Object.entries(
-                unifiedHudHtmlContent,
-              )
-                .filter(([, content]) => content !== undefined)
-                .map(([key, content]) => (
-                  <div key={key} dangerouslySetInnerHTML={{ __html: content as string }} />
-                ))}
+              {Object.keys(unifiedHudHtmlContent).length > 0 && (
+                <div className="unified-hud">
+                  {Object.entries(unifiedHudHtmlContent)
+                    .filter(([, content]) => content !== undefined)
+                    .map(([key, content]) => (
+                      <div
+                        key={key}
+                        dangerouslySetInnerHTML={{ __html: content as string }}
+                      />
+                    ))}
+                </div>
+              )}
             </Box>
             {showControlPanel && (
               <ControlPanel control_layout={controlLayout} />

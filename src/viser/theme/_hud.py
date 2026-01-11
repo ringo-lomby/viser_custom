@@ -24,6 +24,4 @@ HUD_HTML = """
 		transition: opacity 0.2s ease-in-out; /* Added for smoother transitions */
 	}
 </style>
-<div class="unified-hud">
-</div>
 """
