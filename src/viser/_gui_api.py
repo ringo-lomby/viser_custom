@@ -32,6 +32,8 @@ from typing_extensions import (
 )
 
 from viser import _image_encoding, theme
+from viser.theme._hud import HUD_HTML # <--- Add this import
+
 from viser._backwards_compat_shims import deprecated_positional_shim
 
 from . import _messages, uplot
@@ -227,6 +229,10 @@ class GuiApi:
             _messages.FileTransferPart,
             self._handle_file_transfer_part,
         )
+
+        # Add the HUD HTML to the main scene
+        self.add_html(HUD_HTML, target_area="main_scene")
+
 
     async def _handle_gui_updates(
         self, client_id: ClientId, message: _messages.GuiUpdateMessage
@@ -711,7 +717,7 @@ class GuiApi:
         *,
         order: float | None = None,
         visible: bool = True,
-        target_area: Literal["control_panel", "main_scene"] = "control_panel",
+        target_area: Literal["control_panel", "main_scene", "unified_hud"] = "control_panel",
     ) -> GuiHtmlHandle:
         """Add HTML to the GUI.
 

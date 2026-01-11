@@ -39,6 +39,7 @@ export interface GuiState {
     };
   };
   mainSceneHtmlContent: { [uuid: string]: string | undefined };
+  unifiedHudHtmlContent: { [uuid: string]: string | undefined };
 }
 
 export interface GuiActions {
@@ -59,6 +60,8 @@ export interface GuiActions {
   ) => void;
   addMainSceneHtml: (uuid: string, content: string) => void;
   removeMainSceneHtml: (uuid: string) => void;
+  addUnifiedHudHtml: (uuid: string, content: string) => void;
+  removeUnifiedHudHtml: (uuid: string) => void;
 }
 
 const searchParams = new URLSearchParams(window.location.search);
@@ -87,6 +90,7 @@ const cleanGuiState: GuiState = {
   guiConfigFromUuid: {},
   uploadsInProgress: {},
   mainSceneHtmlContent: {},
+  unifiedHudHtmlContent: {},
 };
 
 export function computeRelativeLuminance(color: string) {
@@ -163,8 +167,10 @@ export function useGuiState(initialServer: string) {
             }
             // Always attempt to remove from mainSceneHtmlContent, in case it was placed there.
             delete state.mainSceneHtmlContent[id];
+            // Also attempt to remove from unifiedHudHtmlContent.
+            delete state.unifiedHudHtmlContent[id];
 
-            if (guiConfig === undefined && state.mainSceneHtmlContent[id] === undefined) {
+            if (guiConfig === undefined && state.mainSceneHtmlContent[id] === undefined && state.unifiedHudHtmlContent[id] === undefined) {
                 console.warn("(OK) Tried to remove non-existent component", id);
             }
           }),
@@ -199,6 +205,14 @@ export function useGuiState(initialServer: string) {
         removeMainSceneHtml: (uuid) =>
           set((state) => {
             delete state.mainSceneHtmlContent[uuid];
+          }),
+        addUnifiedHudHtml: (uuid, content) =>
+          set((state) => {
+            state.unifiedHudHtmlContent[uuid] = content;
+          }),
+        removeUnifiedHudHtml: (uuid) =>
+          set((state) => {
+            delete state.unifiedHudHtmlContent[uuid];
           }),
         updateGuiProps: (id, updates) => {
           set((state) => {

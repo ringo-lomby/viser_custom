@@ -272,6 +272,7 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
   const [showControlPanel, setShowControlPanel] = React.useState(
     controlPanelVisibleByDefault ?? true,
   );
+  const unifiedHudHtmlContent = viewer.useGui((state) => state.unifiedHudHtmlContent);
 
   // Create Mantine theme with custom colors if provided.
   const mantineTheme = useMemo(
@@ -350,6 +351,13 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
               {showLogo && messageSource === "websocket" && <ViserLogo />}
               {Object.entries(
                 viewer.useGui((state) => state.mainSceneHtmlContent),
+              )
+                .filter(([, content]) => content !== undefined)
+                .map(([key, content]) => (
+                  <div key={key} dangerouslySetInnerHTML={{ __html: content as string }} />
+                ))}
+              {Object.entries(
+                unifiedHudHtmlContent,
               )
                 .filter(([, content]) => content !== undefined)
                 .map(([key, content]) => (
