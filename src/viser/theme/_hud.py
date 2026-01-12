@@ -38,10 +38,10 @@ HUD_HTML = """
 		top: 50%;
 		left: 50%;
 		transform: translate(-50%, -50%);
-		font-size: 96px;
+		font-size: 80px;
 	}
 	.speed-unit {
-		font-size: 24px;
+		font-size: 16px;
 	}
 	.battery-bar-container {
 		width: 150px;
@@ -66,14 +66,14 @@ HUD_HTML = """
 		align-items: center;
 	}
 	.mission-label {
-		font-size: 24px;
+		font-size: 16px;
 		margin-bottom: 5px;
 	}
 	.mission-data {
-		font-size: 48px;
+		font-size: 35px;
 	}
 	.mission-unit {
-		font-size: 24px; /* Smaller font size for units */
+		font-size: 16px; /* Smaller font size for units */
 	}
 	.traffic-light {
 		width: 100px;
