@@ -717,7 +717,7 @@ class GuiApi:
         *,
         order: float | None = None,
         visible: bool = True,
-        target_area: Literal["control_panel", "main_scene", "unified_hud"] = "control_panel",
+        target_area: Literal["control_panel", "main_scene", "speed-gauge", "battery", "mission-info", "traffic-light"] = "control_panel",
     ) -> GuiHtmlHandle:
         """Add HTML to the GUI.
 
@@ -725,6 +725,7 @@ class GuiApi:
             content: HTML content to display.
             order: Optional ordering, smallest values will be displayed first.
             visible: Whether the component is visible.
+            target_area: Where to display the HTML content.
 
         Returns:
             A handle that can be used to interact with the GUI element.

@@ -84,11 +84,10 @@ function useMessageHandler() {
       if (message.type === "GuiHtmlMessage") {
         if (message.props.target_area === "main_scene") {
           addMainSceneHtml(message.uuid, message.props.content);
-        } else if (message.props.target_area === "unified_hud") {
-          addUnifiedHudHtml(message.uuid, message.props.content);
+        } else if (["speed-gauge", "battery", "mission-info", "traffic-light"].includes(message.props.target_area)) {
+          addUnifiedHudHtml(message.props.target_area, message.props.content);
         }
         else {
-          // Default to control panel for GuiHtmlMessage if not explicitly main_scene
           addGui(message);
         }
       } else {

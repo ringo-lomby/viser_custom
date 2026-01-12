@@ -358,14 +358,30 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                 ))}
               {Object.keys(unifiedHudHtmlContent).length > 0 && (
                 <div className="unified-hud">
-                  {Object.entries(unifiedHudHtmlContent)
-                    .filter(([, content]) => content !== undefined)
-                    .map(([key, content]) => (
-                      <div
-                        key={key}
-                        dangerouslySetInnerHTML={{ __html: content as string }}
-                      />
-                    ))}
+                  <div
+                    className="hud-item speed-gauge"
+                    dangerouslySetInnerHTML={{
+                      __html: unifiedHudHtmlContent["speed-gauge"] ?? "",
+                    }}
+                  />
+                  <div
+                    className="hud-item battery"
+                    dangerouslySetInnerHTML={{
+                      __html: unifiedHudHtmlContent["battery"] ?? "",
+                    }}
+                  />
+                  <div
+                    className="hud-item mission-info"
+                    dangerouslySetInnerHTML={{
+                      __html: unifiedHudHtmlContent["mission-info"] ?? "",
+                    }}
+                  />
+                  <div
+                    className="hud-item traffic-light"
+                    dangerouslySetInnerHTML={{
+                      __html: unifiedHudHtmlContent["traffic-light"] ?? "",
+                    }}
+                  />
                 </div>
               )}
             </Box>

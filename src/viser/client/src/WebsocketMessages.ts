@@ -490,7 +490,7 @@ export interface GuiHtmlMessage {
     order: number;
     content: string;
     visible: boolean;
-    target_area: "control_panel" | "main_scene" | "unified_hud";
+    target_area: "control_panel" | "main_scene" | "speed-gauge" | "battery" | "mission-info" | "traffic-light";
   };
 }
 /** GuiProgressBarMessage(uuid: 'str', value: 'float', container_uuid: 'str', props: 'GuiProgressBarProps')
