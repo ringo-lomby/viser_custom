@@ -28,7 +28,7 @@ HUD_HTML = """
         flex-direction: column;
         align-items: center;
 	}
-	..speed-gauge {
+	.speed-gauge {
 		position: relative;
 		width: 150px;
 		height: 150px;
