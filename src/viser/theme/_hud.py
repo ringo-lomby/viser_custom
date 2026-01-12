@@ -66,7 +66,7 @@ HUD_HTML = """
 		align-items: center;
 	}
 	.mission-label {
-		font-size: 16px;
+		font-size: 24px;
 		margin-bottom: 5px;
 	}
 	.mission-data {
