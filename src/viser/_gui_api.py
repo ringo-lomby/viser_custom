@@ -231,7 +231,7 @@ class GuiApi:
         )
 
         # Add the HUD HTML to the main scene
-        self.add_html(HUD_HTML, target_area="unified_hud")
+        self.add_html(HUD_HTML, target_area="main_scene")
 
 
     async def _handle_gui_updates(
