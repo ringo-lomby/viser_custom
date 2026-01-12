@@ -51,9 +51,7 @@ HUD_HTML = """
 		overflow: hidden;
 	}
 	.battery-bar-fill {
-		width: {self._battery_soc}%;
 		height: 100%;
-		background-color: {battery_fill_color};
 		border-radius: 5px;
 	}
 	.battery-value {
