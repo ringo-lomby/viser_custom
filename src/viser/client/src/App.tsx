@@ -377,7 +377,7 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                     }}
                   />
                   <div
-                    className="hud-item traffic-light"
+                    className="hud-item"
                     dangerouslySetInnerHTML={{
                       __html: unifiedHudHtmlContent["traffic-light"] ?? "",
                     }}
