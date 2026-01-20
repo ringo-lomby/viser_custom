@@ -83,7 +83,7 @@ HUD_HTML = """
 	}
 	.notification {
 		position: fixed;
-		top: 150px;
+		top: 220px;
 		left: 50%;
 		transform: translateX(-50%);
 		display: flex;
@@ -92,8 +92,7 @@ HUD_HTML = """
 		padding: 10px;
 		border-radius: 5px;
 		color: #FFFFFF;
-		font-family: 'Chakra Petch', sans-serif;
-		background-color: rgba(0, 0, 0, 0.5);
+		background-color: transparent;
 		z-index: 999990;
 	}
 </style>
