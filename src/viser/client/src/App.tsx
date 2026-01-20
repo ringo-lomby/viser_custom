@@ -386,7 +386,7 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                 )}
                 {Object.keys(unifiedHudHtmlContent).length > 0 && (
                   <div
-                    className="hud-item notification"
+                    className="notification"
                     dangerouslySetInnerHTML={{
                       __html: unifiedHudHtmlContent["notification"] ?? "",
                     }}

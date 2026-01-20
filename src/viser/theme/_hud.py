@@ -81,5 +81,20 @@ HUD_HTML = """
 		border-radius: 50%;
 		border: 2px solid #FFFFFF;
 	}
+	.notification {
+		position: fixed;
+		top: 150px;
+		left: 50%;
+		transform: translateX(-50%);
+		display: flex;
+		align-items: center;
+		gap: 10px;
+		padding: 10px;
+		border-radius: 5px;
+		color: #FFFFFF;
+		font-family: 'Chakra Petch', sans-serif;
+		background-color: rgba(0, 0, 0, 0.5);
+		z-index: 999990;
+	}
 </style>
 """
