@@ -83,7 +83,7 @@ HUD_HTML = """
 	}
 	.notification {
 		position: fixed;
-		top: 220px;
+		top: 260px;
 		left: 50%;
 		transform: translateX(-50%);
 		display: flex;
@@ -94,6 +94,9 @@ HUD_HTML = """
 		color: #FFFFFF;
 		background-color: transparent;
 		z-index: 999990;
+	}
+	.notification-msg {
+		font-size: 35px;
 	}
 </style>
 """
