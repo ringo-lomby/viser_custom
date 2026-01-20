@@ -382,15 +382,17 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                       __html: unifiedHudHtmlContent["traffic-light"] ?? "",
                     }}
                   />
-                                  </div>
-                                )}
-                                {Object.keys(unifiedHudHtmlContent).length > 0 && (
-                                  <div
-                                    className="hud-item notification"
-                                    dangerouslySetInnerHTML={{
-                                      __html: unifiedHudHtmlContent["notification"] ?? "",
-                                    }}
-                                  />            </Box>
+                </div>
+                )}
+                {Object.keys(unifiedHudHtmlContent).length > 0 && (
+                  <div
+                    className="hud-item notification"
+                    dangerouslySetInnerHTML={{
+                      __html: unifiedHudHtmlContent["notification"] ?? "",
+                    }}
+                  />    
+                )}        
+            </Box>
             {showControlPanel && (
               <ControlPanel control_layout={controlLayout} />
             )}
