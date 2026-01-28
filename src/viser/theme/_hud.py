@@ -113,14 +113,21 @@ HUD_HTML = """
 	}
 	.notification-content .column-left {
 		flex: 1;
-		text-align: center;
+		text-align: left;
 		border-right: 1px solid rgba(255, 255, 255, 0.2); /* Divider between columns */
 		padding-right: 10px; /* Space before the divider */
 	}
 	.notification-content .column-right {
 		flex: 1;
-		text-align: center;
+		text-align: left;
 		padding-left: 10px; /* Space after the divider */
+	}
+	.column-label {
+		font-size: 0.8em; /* Slightly smaller font size */
+		font-weight: bold;
+		opacity: 0.7; /* Slightly faded */
+		margin-bottom: 5px; /* Space below the label */
+		display: block; /* Ensures it takes up its own line */
 	}
 </style>
 """
