@@ -22,6 +22,7 @@ HUD_HTML = """
 		backdrop-filter: blur(10px); /* Increased blur for stronger glass effect */
 		border: 1px solid rgba(255, 255, 255, 0.4); /* Subtle white border for reflection */
 		transition: opacity 0.2s ease-in-out; /* Added for smoother transitions */
+
 	}
 	.hud-main-content {
 		display: flex;
@@ -96,6 +97,7 @@ HUD_HTML = """
 		color: #FFFFFF;
 		background-color: transparent;
 		margin-top: 15px;
+		min-height: 55px;
 	}
 	.notification-msg {
 		font-size: 35px;
