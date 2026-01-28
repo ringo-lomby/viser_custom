@@ -4,7 +4,7 @@ HUD_HTML = """
 <style>
 	.unified-hud {
 		position: fixed;
-		bottom: 20px;
+		top: 20px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 90%; /* Increased width */
