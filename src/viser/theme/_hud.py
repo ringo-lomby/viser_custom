@@ -104,6 +104,7 @@ HUD_HTML = """
 	.notification-msg {
 		font-size: 20px;
 		text-align: left;
+		min-height: 30px;
 	}
 	.notification-content {
 		display: flex;
