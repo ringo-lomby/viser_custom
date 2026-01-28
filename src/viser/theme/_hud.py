@@ -102,5 +102,16 @@ HUD_HTML = """
 	.notification-msg {
 		font-size: 35px;
 	}
+	.notification-content {
+		display: flex;
+		justify-content: space-between;
+		width: 100%;
+		gap: 20px;
+	}
+	.notification-content .column-left,
+	.notification-content .column-right {
+		flex: 1;
+		text-align: center;
+	}
 </style>
 """
