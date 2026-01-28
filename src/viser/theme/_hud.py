@@ -123,7 +123,7 @@ HUD_HTML = """
 		padding-left: 10px; /* Space after the divider */
 	}
 	.column-label {
-		font-size: 0.8em; /* Slightly smaller font size */
+		font-size: 0.9em; /* Slightly smaller font size */
 		font-weight: bold;
 		opacity: 0.7; /* Slightly faded */
 		margin-bottom: 5px; /* Space below the label */
