@@ -103,6 +103,7 @@ HUD_HTML = """
 	}
 	.notification-msg {
 		font-size: 20px;
+		text-align: left;
 	}
 	.notification-content {
 		display: flex;
