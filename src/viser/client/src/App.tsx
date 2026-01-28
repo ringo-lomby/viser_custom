@@ -384,12 +384,32 @@ function ViewerContents({ children }: { children: React.ReactNode }) {
                       }}
                     />
                   </div>
-                  <div
-                    className="notification"
-                    dangerouslySetInnerHTML={{
-                      __html: unifiedHudHtmlContent["notification"] ?? "",
-                    }}
-                  />
+                  <div className="notification">
+                    <div className="notification-content">
+                      <div className="column-left">
+                        <div className="column-label"> 
+                            通知
+                        </div>
+                        <div
+                          className="notification-msg"
+                          dangerouslySetInnerHTML={{
+                            __html: unifiedHudHtmlContent["notification"] ?? " ",
+                          }}
+                        />  
+                      </div>
+                      <div className="column-right">
+                        <div className="column-label"> 
+                            停止理由通知
+                        </div>
+                        <div
+                          className="notification-msg"
+                          dangerouslySetInnerHTML={{
+                            __html: unifiedHudHtmlContent["stop_reason"] ?? " ",
+                          }}
+                        />  
+                      </div>
+                    </div>
+                  </div>
                 </div>
               )}        
             </Box>

@@ -717,7 +717,7 @@ class GuiApi:
         *,
         order: float | None = None,
         visible: bool = True,
-        target_area: Literal["control_panel", "main_scene", "speed-gauge", "battery", "mission-info", "traffic-light", "notification"] = "control_panel",
+        target_area: Literal["control_panel", "main_scene", "speed-gauge", "battery", "mission-info", "traffic-light", "notification", "stop_reason"] = "control_panel",
     ) -> GuiHtmlHandle:
         """Add HTML to the GUI.
 
