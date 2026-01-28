@@ -92,13 +92,14 @@ HUD_HTML = """
 		display: flex;
 		align-items: center;
 		gap: 10px;
-		padding: 10px;
+		padding: 15px 10px 10px 10px; /* Adjusted padding for top border */
 		border-radius: 5px;
 		color: #FFFFFF;
 		background-color: transparent;
-		margin-top: 15px;
+		margin-top: 0; /* No margin-top needed if padding handles spacing */
 		min-height: 75px;
 		width: 100%;
+		border-top: 1px solid rgba(255, 255, 255, 0.2); /* Divider on top */
 	}
 	.notification-msg {
 		font-size: 20px;
@@ -109,10 +110,16 @@ HUD_HTML = """
 		width: 100%;
 		gap: 20px;
 	}
-	.notification-content .column-left,
+	.notification-content .column-left {
+		flex: 1;
+		text-align: center;
+		border-right: 1px solid rgba(255, 255, 255, 0.2); /* Divider between columns */
+		padding-right: 10px; /* Space before the divider */
+	}
 	.notification-content .column-right {
 		flex: 1;
 		text-align: center;
+		padding-left: 10px; /* Space after the divider */
 	}
 </style>
 """
