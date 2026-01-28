@@ -97,7 +97,7 @@ HUD_HTML = """
 		color: #FFFFFF;
 		background-color: transparent;
 		margin-top: 15px;
-		min-height: 55px;
+		min-height: 75px;
 	}
 	.notification-msg {
 		font-size: 35px;
