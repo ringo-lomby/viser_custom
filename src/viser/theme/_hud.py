@@ -98,9 +98,10 @@ HUD_HTML = """
 		background-color: transparent;
 		margin-top: 15px;
 		min-height: 75px;
+		width: 100%;
 	}
 	.notification-msg {
-		font-size: 35px;
+		font-size: 20px;
 	}
 	.notification-content {
 		display: flex;
