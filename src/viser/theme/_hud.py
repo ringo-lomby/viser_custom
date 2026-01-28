@@ -4,7 +4,7 @@ HUD_HTML = """
 <style>
 	.unified-hud {
 		position: fixed;
-		top: 20px;
+		bottom: 20px;
 		left: 50%;
 		transform: translateX(-50%);
 		width: 90%; /* Increased width */
@@ -16,12 +16,18 @@ HUD_HTML = """
 		font-weight: bold;
 		z-index: 999990;
 		display: flex;
-		justify-content: space-around;
+		flex-direction: column;
 		align-items: center;
 		padding: 15px; /* Increased padding */
 		backdrop-filter: blur(10px); /* Increased blur for stronger glass effect */
 		border: 1px solid rgba(255, 255, 255, 0.4); /* Subtle white border for reflection */
 		transition: opacity 0.2s ease-in-out; /* Added for smoother transitions */
+	}
+	.hud-main-content {
+		display: flex;
+		justify-content: space-around;
+		align-items: center;
+		width: 100%;
 	}
 	.hud-item {
 		display: flex;
@@ -82,10 +88,6 @@ HUD_HTML = """
 		border: 2px solid #FFFFFF;
 	}
 	.notification {
-		position: fixed;
-		top: 260px;
-		left: 50%;
-		transform: translateX(-50%);
 		display: flex;
 		align-items: center;
 		gap: 10px;
@@ -93,7 +95,7 @@ HUD_HTML = """
 		border-radius: 5px;
 		color: #FFFFFF;
 		background-color: transparent;
-		z-index: 999990;
+		margin-top: 15px;
 	}
 	.notification-msg {
 		font-size: 35px;
