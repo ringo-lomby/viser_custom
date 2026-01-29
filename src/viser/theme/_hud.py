@@ -102,9 +102,9 @@ HUD_HTML = """
 		border-top: 1px solid rgba(255, 255, 255, 0.2); /* Divider on top */
 	}
 	.notification-msg {
-		font-size: 27px;
+		font-size: 36px;
 		text-align: left;
-		min-height: 35px;
+		min-height: 40px;
 	}
 	.notification-content {
 		display: flex;
